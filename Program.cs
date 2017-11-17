@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,40 +9,27 @@ namespace sorevnovanie1
 {
     class Program
     {
-        static void Calc(int[,] mass1, int n, int m,bool a)
+
+        static void Up(int[,] field,int x, int y)
         {
-            if (a == true)
+            for (int i = y; i != 0; i--)
             {
-
-                int k = 0;
-
-                for (int i = 0; i < n; i++)
-                {
-                    if (mass1[n, i] == 0) { k++; }
-                }
-
-                for (int i = m; i < m; i++)
-                {
-                    if (mass1[i, m] == 0) { k++; }
-                }
-
-                Console.WriteLine(k);
-            }
-            if (a == false)
-            {
-
-                for (int i = 0; i < m; i++)
-                {
-                    if (Convert.ToInt32(mass1[n, i]) == 0) {  Console.WriteLine(n + " " + i); }
-                }
-
-                for (int i = m; i < n; i++)
-                {
-                    if (Convert.ToInt32(mass1[i, m]) == 0) { Console.WriteLine(i + " " + m); }
-                }  
-         
+                if (field[i, x] == 0) { Console.WriteLine(y + " " + x); break; }
             }
         }
+        static void Doun(int[,] field, int x, int y)
+        {
+
+        }
+        static void Right(int[,] field, int x, int y)
+        {
+
+        }
+        static void Left(int[,] field, int x, int y)
+        {
+
+        }
+
         static void Main(string[] args)
         {
 
@@ -53,8 +41,10 @@ namespace sorevnovanie1
             int k = Convert.ToInt32(input[2]);
 
             int[,] field = new int[n, m];
-            string[,] command_field = new string[k,3];
+            string[,] command_field = new string[k, 3];
 
+            //Ввод команд
+            
             for (int i = 0; i < k; i++)
             {
 
@@ -62,31 +52,40 @@ namespace sorevnovanie1
 
                 for (int j = 0; j < 3; j++)
                 {
-                    command_field[i,j] = text[j];    
+                    command_field[i, j] = text[j];
                 }
             }
 
-            for (int i = 0; i < n; i++)
+            //*
+
+            for (int i = 0; i < k; i++)
             {
-                if(command_field[i,0] == "Color") 
+                if (command_field[i, 0] == "Color")
                 {
-                    field[Convert.ToInt32(command_field[i,1]) - 1,Convert.ToInt32(command_field[i,2]) - 1] = 1;
+                    field[Convert.ToInt32(command_field[i, 1]) - 1, Convert.ToInt32(command_field[i, 2]) - 1] = 1;
                 }
-                if (command_field[i, 0] == "Neighbors")
+                else
                 {
-                    Calc(field, n, m, true);
-                    Calc(field, n, m, false);
+                    int x = Convert.ToInt32(command_field[i,1]);
+                    int y = Convert.ToInt32(command_field[i,2]);
+
+                    Up(field, x, y);                     
                 }
             }
+
+            //Вывод field
 
             //for (int i = 0; i < n; i++)
             //{
             //    for (int j = 0; j < m; j++)
             //    {
-            //        Console.Write(field[i,j] + " ");
+            //        Console.Write(field[i, j] + " ");
             //    }
             //    Console.WriteLine();
             //}
+
+            //*
+
         }
     }
 }
