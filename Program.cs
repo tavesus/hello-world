@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +9,11 @@ namespace sorevnovanie1
     class Program
     {
 
-        static void Up(int[,] field,int x, int y)
+        static void Up(int[,] field, int x, int y)
         {
-            for (int i = y; i != 0; i--)
+            for (int i = x; i != 0; i--)
             {
-                if (field[i, x] == 0) { Console.WriteLine(y + " " + x); break; }
+                if (field[i-1, y] == 0) { Console.WriteLine((i-1) + " " + y); break; }
             }
         }
         static void Doun(int[,] field, int x, int y)
@@ -40,11 +39,11 @@ namespace sorevnovanie1
             int m = Convert.ToInt32(input[1]);
             int k = Convert.ToInt32(input[2]);
 
-            int[,] field = new int[n, m];
+            int[,] field = new int[n+1, m+1];
             string[,] command_field = new string[k, 3];
 
             //Ввод команд
-            
+
             for (int i = 0; i < k; i++)
             {
 
@@ -62,14 +61,14 @@ namespace sorevnovanie1
             {
                 if (command_field[i, 0] == "Color")
                 {
-                    field[Convert.ToInt32(command_field[i, 1]) - 1, Convert.ToInt32(command_field[i, 2]) - 1] = 1;
+                    field[Convert.ToInt32(command_field[i, 1]), Convert.ToInt32(command_field[i, 2])] = 1;
                 }
                 else
                 {
-                    int x = Convert.ToInt32(command_field[i,1]);
-                    int y = Convert.ToInt32(command_field[i,2]);
+                    int x = Convert.ToInt32(command_field[i, 1]);
+                    int y = Convert.ToInt32(command_field[i, 2]);
 
-                    Up(field, x, y);                     
+                    Up(field, x, y);
                 }
             }
 
