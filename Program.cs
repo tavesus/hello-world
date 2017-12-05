@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,12 +13,21 @@ namespace sorevnovanie1
         {
             for (int i = x; i != 0; i--)
             {
-                if (field[i-1, y] == 0) { Console.WriteLine((i-1) + " " + y); break; }
+                if (field[i - 1, y] == 0) { Console.WriteLine((i - 1) + " " + y); break; }
             }
         }
-        static void Doun(int[,] field, int x, int y)
+        static void Down(int[,] field, int x, int y)
         {
-
+            try
+            {
+                
+                    for (int i = x; i != 50001; i++)
+                    {
+                        if (field[i - 1, y] == 0) { Console.WriteLine(i + " " + (y+1)); break; }
+                    }
+                
+            }
+            catch { }
         }
         static void Right(int[,] field, int x, int y)
         {
@@ -39,7 +48,7 @@ namespace sorevnovanie1
             int m = Convert.ToInt32(input[1]);
             int k = Convert.ToInt32(input[2]);
 
-            int[,] field = new int[n+1, m+1];
+            int[,] field = new int[n + 1, m + 1];
             string[,] command_field = new string[k, 3];
 
             //Ввод команд
@@ -69,6 +78,8 @@ namespace sorevnovanie1
                     int y = Convert.ToInt32(command_field[i, 2]);
 
                     Up(field, x, y);
+                    Down(field,x,y);
+                    Console.WriteLine();
                 }
             }
 
