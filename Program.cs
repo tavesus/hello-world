@@ -1,101 +1,63 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿﻿using System;
 
 namespace sorevnovanie1
 {
     class Program
     {
-
-        static void Up(int[,] field, int x, int y)
-        {
-            for (int i = x; i != 0; i--)
-            {
-                if (field[i - 1, y] == 0) { Console.WriteLine((i - 1) + " " + y); break; }
-            }
-        }
-        static void Down(int[,] field, int x, int y)
-        {
-            try
-            {
-                
-                    for (int i = x; i != 50001; i++)
-                    {
-                        if (field[i - 1, y] == 0) { Console.WriteLine(i + " " + (y+1)); break; }
-                    }
-                
-            }
-            catch { }
-        }
-        static void Right(int[,] field, int x, int y)
-        {
-
-        }
-        static void Left(int[,] field, int x, int y)
-        {
-
-        }
-
         static void Main(string[] args)
         {
-
 
             string[] input = Console.ReadLine().Split();
 
             int n = Convert.ToInt32(input[0]);
             int m = Convert.ToInt32(input[1]);
-            int k = Convert.ToInt32(input[2]);
 
-            int[,] field = new int[n + 1, m + 1];
-            string[,] command_field = new string[k, 3];
+            int[] max = { 0, 0 };
+            int[] max2 = { 0, 0 };
 
-            //Ввод команд
+            int[] allLinesMax = { 0, 0 };
+            int[] allLinesMax2 = { 0, 0 };
+            bool haveAllLinesStart = false;
 
-            for (int i = 0; i < k; i++)
+            for (int i = 0; i < n; i++)
             {
 
-                string[] text = Console.ReadLine().Split();
+                string[] numbers = Console.ReadLine().Split();
 
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < m; j++)
                 {
-                    command_field[i, j] = text[j];
+                    if (Convert.ToInt32(numbers[j]) > max2[0]) { max2[0] = Convert.ToInt32(numbers[i]); max2[1] = i; haveAllLinesStart = false; }
+                    else
+                    {
+                        if (Convert.ToInt32(numbers[j]) == max[0])
+                        {
+                            allLinesMax2[1] = i;
+                            haveAllLinesStart = true;
+
+                            for (int s = 0; s < m; s++)
+                            {
+                                allLinesMax2[0] += Convert.ToInt32(numbers[j]);
+                            }
+
+                        }
+                    }
                 }
+
+                if (allLinesMax[0] < allLinesMax2[0]) { allLinesMax[0] = allLinesMax2[0]; allLinesMax[1] = allLinesMax2[1]; }
+                if (max[0] < max2[0]) { max[0] = max2[0]; max[1] = max2[1]; }
+
             }
 
-            //*
-
-            for (int i = 0; i < k; i++)
-            {
-                if (command_field[i, 0] == "Color")
-                {
-                    field[Convert.ToInt32(command_field[i, 1]), Convert.ToInt32(command_field[i, 2])] = 1;
-                }
-                else
-                {
-                    int x = Convert.ToInt32(command_field[i, 1]);
-                    int y = Convert.ToInt32(command_field[i, 2]);
-
-                    Up(field, x, y);
-                    Down(field,x,y);
-                    Console.WriteLine();
-                }
-            }
-
-            //Вывод field
-
-            //for (int i = 0; i < n; i++)
-            //{
-            //    for (int j = 0; j < m; j++)
-            //    {
-            //        Console.Write(field[i, j] + " ");
-            //    }
-            //    Console.WriteLine();
-            //}
-
-            //*
+            if (haveAllLinesStart) { Console.WriteLine(allLinesMax[1]); }
+            else { Console.WriteLine(max[1]); }
 
         }
     }
 }
+/*
+3 3
+1 2 3
+4 5 6
+7 8 9
+
+*/
