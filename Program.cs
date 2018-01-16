@@ -61,3 +61,30 @@ namespace sorevnovanie1
 7 8 9
 
 */
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace projectName
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] s = Console.ReadLine().Split();
+            int n = Convert.ToInt32(s[0]);
+            int m = Convert.ToInt32(s[1]);
+            int[] x = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                string[] e = Console.ReadLine().Split();
+                Tuple<int, int, int> t = new Tuple<int, int, int>(Convert.ToInt32(e[0]), Convert.ToInt32(e[1]),i+1;
+                x[i] = t.Item1;
+            }
+            
+        }
+    }
+}
