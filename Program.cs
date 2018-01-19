@@ -1,5 +1,5 @@
 ﻿﻿using System;
-
+ // Закраска клеток
 namespace sorevnovanie1
 {
     class Program
@@ -67,7 +67,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+//Та самая задача
 namespace projectName
 {
     class Program
@@ -85,6 +85,49 @@ namespace projectName
                 x[i] = t.Item1;
             }
             
+        }
+    }
+}
+using System;
+//http://informatics.mccme.ru/mod/statements/view3.php?id=27052&chapterid=505#1
+namespace SDSD
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] input = Console.ReadLine().Split();
+            int n = Convert.ToInt32(input[0]);
+            int t = Convert.ToInt32(input[1]);
+            int [,] cub = new int[n + 2,n + 2];
+            int[,] cub2 = new int[n, n];
+
+            for (int i = 1; i < n + 1; i++)
+            {
+                for (int j = 1; j < n + 1; j++)
+                {
+                    cub[i, j] = 1;
+                }
+            }
+            for (int i = 1; i < n + 1; i++)
+            {
+
+                for (int j = 1; j < n + 1; j++)
+                {
+                    int counter = 0;
+                    if (cub[i - 1, j] == 1) { counter++; }
+                    if (cub[i + 1, j] == 1) { counter++; }
+                    if (cub[i, j - 1] == 1) { counter++; }
+                    if (cub[i, j + 1] == 1) { counter++; }
+
+                    if (counter == 3 && cub[i, j] == 1) { cub2[i - 1, j - 1] = 0; }
+                    if (counter == 3 && cub[i, j] != 1) { cub2[i - 1, j - 1] = 1; }
+                    if (counter > 2 && cub[i, j] == 1) { cub2[i - 1, j - 1] = 0; }
+
+                    Console.Write(cub2[i-1,j-1] + " ");
+                }
+                Console.WriteLine();
+            }
         }
     }
 }
