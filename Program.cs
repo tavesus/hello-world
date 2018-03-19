@@ -11,13 +11,19 @@ namespace cSuper
             int n = Convert.ToInt32(input[0]);
             int m = Convert.ToInt32(input[1]);
             double S1 = Convert.ToDouble(input[2]);
-            double a1 = Math.Sqrt( (4 * Math.Tan(Math.PI / n)) / n );
+            double a1 = Math.Sqrt( (4 * S1 * Math.Tan(Math.PI / n)) / n );
             double P = a1 * n;
 
             double a2 = P / m;
-            double S2 = (n * (a2 * a2)) / ( 4 * Math.Tan(Math.PI / n) );
+            double S2 = (m * (a2 * a2)) / ( 4 * Math.Tan(Math.PI / m) );
 
-            Console.WriteLine(S2);
+            string otvet = S2.ToString();
+
+            for (int i = 0; i < otvet.Length; i++)
+            {
+                Console.Write(otvet[i]);
+                if (otvet[i] == ',') { Console.Write(otvet[i + 1]); Console.Write(otvet[i + 2]); Console.Write(otvet[i + 3]); break; }
+            }
         }
     }
 }
