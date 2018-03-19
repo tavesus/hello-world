@@ -10,14 +10,14 @@ namespace cSuper
             string[] input = Console.ReadLine().Split();
             int n = Convert.ToInt32(input[0]);
             int m = Convert.ToInt32(input[1]);
-            double S = Convert.ToDouble(input[2]);
-            double a = Math.Pow(S,1.0 / n);
+            double S1 = Convert.ToDouble(input[2]);
+            double a1 = Math.Sqrt( (4 * Math.Tan(Math.PI / n)) / n );
+            double P = a1 * n;
 
-            double d1 = n * (a * a);
-            double d2 = 4 * Math.Tan(Math.PI / n);
-            double d3 = d1 / d2;
+            double a2 = P / m;
+            double S2 = (n * (a2 * a2)) / ( 4 * Math.Tan(Math.PI / n) );
 
-            Console.WriteLine(d3);
+            Console.WriteLine(S2);
         }
     }
 }
