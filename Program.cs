@@ -18,11 +18,14 @@ namespace cSuper
             double S2 = (m * (a2 * a2)) / ( 4 * Math.Tan(Math.PI / m) );
 
             string otvet = S2.ToString();
-
-            for (int i = 0; i < otvet.Length; i++)
+            if(S2 == 0) { Console.WriteLine("0,000"); }
+            else
             {
-                Console.Write(otvet[i]);
-                if (otvet[i] == ',') { Console.Write(otvet[i + 1]); Console.Write(otvet[i + 2]); Console.Write(otvet[i + 3]); break; }
+                for (int i = 0; i < otvet.Length; i++)
+                {
+                    Console.Write(otvet[i]);
+                    if (otvet[i] == ',') { Console.Write(otvet[i + 1]); Console.Write(otvet[i + 2]); Console.Write(otvet[i + 3]); break; }
+                }
             }
         }
     }
