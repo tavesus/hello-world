@@ -1,28 +1,45 @@
 using System;
 
-namespace SuperSdvig
+namespace Rekursia
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int n = Convert.ToInt32(Console.ReadLine());
-            string[] input = Console.ReadLine().Split();
-            int k = Convert.ToInt32(Console.ReadLine());
-            string[] output = new string [n];
-
-            for (int i = 0; i < n; i++)
+            string input = Console.ReadLine();
+            string max = "";
+            string number = "";
+            
+            for (int i = 0; i < input.Length; i++)
             {
-                for (int j = i , l = 0; l < k + 1; l++,j++)
+                bool start = false;
+                if (input[i] >= '0' && input[i] <='9' ) 
                 {
-                    if (l == k) { output[j] = input[i]; }
-                    if (j == n - 1) { j = -1; }
+                    start = true;
+                    number += input[i];
+                }
+                if(start == false || i == input.Length - 1)
+                {
+                    if (max == "") { max = number;  }
+                    else
+                    {
+                        if (number.Length > max.Length ) { max = number; }
+                        else
+                        {
+                            if (number.Length == max.Length)
+                            {
+                                for (int j = 0; j < number.Length; j++)
+                                {
+                                    if (Convert.ToInt16(max[j]) < Convert.ToInt16(number[j])) { max = number; number = ""; break; }
+                                }
+                            }
+                        }
+                    }
+                    number = "";
                 }
             }
-            for (int i = 0; i < n; i++)
-            {
-                Console.Write(output[i] + " ");
-            }
+            Console.WriteLine(max);
         }
     }
 }
+
