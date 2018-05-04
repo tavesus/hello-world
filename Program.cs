@@ -9,21 +9,21 @@ namespace Rekursia
             string input = Console.ReadLine();
             string max = "";
             string number = "";
-            
+
             for (int i = 0; i < input.Length; i++)
             {
                 bool start = false;
-                if (input[i] >= '0' && input[i] <='9' ) 
+                if (input[i] >= '0' && input[i] <= '9')
                 {
                     start = true;
                     number += input[i];
                 }
-                if(start == false || i == input.Length - 1)
+                if (start == false || i == input.Length - 1)
                 {
-                    if (max == "") { max = number;  }
+                    if (max == "") { max = number; }
                     else
                     {
-                        if (number.Length > max.Length ) { max = number; }
+                        if (number.Length > max.Length) { max = number; }
                         else
                         {
                             if (number.Length == max.Length)
@@ -38,8 +38,8 @@ namespace Rekursia
                     number = "";
                 }
             }
-            Console.WriteLine(max);
+            if (max == "") { Console.WriteLine(0); }
+            else { Console.WriteLine(max); }
         }
     }
 }
-
