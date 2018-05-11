@@ -43,3 +43,55 @@ namespace Rekursia
         }
     }
 }
+// zadacha #40
+using System;
+using System.Text;
+
+namespace Rekursia
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] input = Console.ReadLine().Split();
+            int n = Convert.ToInt32(input[0]);
+            int m = Convert.ToInt32(input[1]);
+            int k = Convert.ToInt32(input[2]);
+
+            int[,] field = new int[n + 2,m + 2];
+            for (int i = 0; i < k; i++)
+            {
+                string[] str = Console.ReadLine().Split();
+                int y = Convert.ToInt32(str[1]);
+                int x = Convert.ToInt32(str[2]);
+                if (str[0] == "Color")
+                {
+                    field[y,x] = 1;
+                }
+                else
+                {
+                    int counter = 0;
+                    string[] cord = new string[4];
+                    //up
+                    for (int f = y-1; f >= 1; f--)
+                    {
+                        if (field[f, x] == 0) { cord[counter] = f + " " + x; counter++; break; }
+                    }
+                    //down
+                    for (int f = y + 1; f < m; f++)
+                    {
+                        if (field[f, x] == 0) { cord[counter] = f + " " + x; counter++; break; }
+                    }
+                }
+            }
+            for (int i = 0; i < n + 2; i++)
+            {
+                for (int j = 0; j < m + 2; j++)
+                {
+                    Console.Write(field[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+    }
+}
