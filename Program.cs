@@ -58,7 +58,7 @@ namespace Rekursia
             int m = Convert.ToInt32(input[1]);
             int k = Convert.ToInt32(input[2]);
 
-            int[,] field = new int[n + 2,m + 2];
+            int[,] field = new int[n + 2, m + 2];
             for (int i = 0; i < k; i++)
             {
                 string[] str = Console.ReadLine().Split();
@@ -66,22 +66,49 @@ namespace Rekursia
                 int x = Convert.ToInt32(str[2]);
                 if (str[0] == "Color")
                 {
-                    field[y,x] = 1;
+                    field[y, x] = 1;
                 }
                 else
                 {
                     int counter = 0;
                     string[] cord = new string[4];
                     //up
-                    for (int f = y-1; f >= 1; f--)
+
+                    for (int f = y - 1; f >= 1; f--)
                     {
-                        if (field[f, x] == 0) { cord[counter] = f + " " + x; counter++; break; }
+                        if (field[f, x] == 0) { cord[counter] = f.ToString() + " " + x.ToString(); counter++; break; }
                     }
+
                     //down
-                    for (int f = y + 1; f < m; f++)
+
+                    for (int f = y + 1; f <= n; f++)
                     {
                         if (field[f, x] == 0) { cord[counter] = f + " " + x; counter++; break; }
                     }
+
+                    //right
+
+                    for (int f = x + 1; f <= m; f++)
+                    {
+                        if (field[y, f] == 0) { cord[counter] = y + " " + f; counter++; break; }
+                    }
+
+                    //left
+
+                    //for (int f = x; f <= m; f++)
+                    //{
+                    //    if (field[y, f] == 0) { cord[counter] = y + " " + f; counter++; break; }
+                    //}
+
+                    //output
+
+                    Console.WriteLine(counter); 
+
+                    for (int j = 0; j < 4; j++)
+                    {
+                        Console.WriteLine(cord[j]);
+                    }
+                    Console.WriteLine();
                 }
             }
             for (int i = 0; i < n + 2; i++)
