@@ -83,6 +83,7 @@ namespace sdsd
         {
             int n = Convert.ToInt32(Console.ReadLine());
             StringBuilder start_number = new StringBuilder(Console.ReadLine());
+            string static_start_number = start_number.ToString();
             StringBuilder max_number = new StringBuilder("");
 
             for (int i = 0; i < n; i++)
@@ -92,7 +93,7 @@ namespace sdsd
                 {
                     if (start_number[j] != '*' && max[0] < Convert.ToInt32(start_number[j].ToString())) { max[0] = Convert.ToInt32(start_number[j].ToString()); max[1] = j; }
                 }
-                if (max[0] != 0 || max[0] == 0 && max_number.ToString() != "") { max_number.Append(max[0]); }
+                max_number.Append(max[0]); 
                 start_number[max[1]] = '*';
             }
             string max_number0 = max_number.ToString();
@@ -106,7 +107,7 @@ namespace sdsd
                     break;
                 } 
             }
-            if (max_number0 == max_number.ToString()) { Console.WriteLine("No"); }
+            if (max_number0 == max_number.ToString() || max_number.ToString() == static_start_number) { Console.WriteLine("No"); }
             else { Console.WriteLine(max_number); }
         }
     }
