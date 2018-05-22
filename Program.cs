@@ -51,23 +51,23 @@ namespace sdsd
 {
     class Program
     {
-        static int[,] matryx;
+        static string[,] matryx;
         static void Recursion(int x, int y)
-        { 
-            
+        {
+
         }
         static void Main(string[] args)
         {
             string[] input = Console.ReadLine().Split();
             int h = Convert.ToInt32(input[0]);
             int w = Convert.ToInt32(input[1]);
-            matryx = new int[h,w];
+            matryx = new string[h, w];
             input = Console.ReadLine().Split();
-            matryx[Convert.ToInt32(input[0]), Convert.ToInt32(input[1])] = 1;
+            matryx[Convert.ToInt32(input[0]), Convert.ToInt32(input[1])] = "+";
             input = Console.ReadLine().Split();
-            matryx[Convert.ToInt32(input[0]), Convert.ToInt32(input[1])] = 2;
+            matryx[Convert.ToInt32(input[0]), Convert.ToInt32(input[1])] = "-";
 
-            
+
         }
     }
 }
