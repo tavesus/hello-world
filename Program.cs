@@ -71,3 +71,43 @@ namespace sdsd
         }
     }
 }
+//zadacha I arhimed
+using System;
+using System.Text;
+
+namespace sdsd
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int n = Convert.ToInt32(Console.ReadLine());
+            StringBuilder start_number = new StringBuilder(Console.ReadLine());
+            StringBuilder max_number = new StringBuilder("");
+
+            for (int i = 0; i < n; i++)
+            {
+                int[] max = { 0, 0 };
+                for (int j = 0; j < n; j++)
+                {
+                    if (start_number[j] != '*' && max[0] < Convert.ToInt32(start_number[j].ToString())) { max[0] = Convert.ToInt32(start_number[j].ToString()); max[1] = j; }
+                }
+                if (max[0] != 0 || max[0] == 0 && max_number.ToString() != "") { max_number.Append(max[0]); }
+                start_number[max[1]] = '*';
+            }
+            string max_number0 = max_number.ToString();
+            for (int i = n-1; i > 0; i--)
+            {
+                if (max_number[i - 1] != max_number[i]) 
+                {
+                    char ch = max_number[i - 1];
+                    max_number[i - 1] = max_number[i];
+                    max_number[i] = ch;
+                    break;
+                } 
+            }
+            if (max_number0 == max_number.ToString()) { Console.WriteLine("No"); }
+            else { Console.WriteLine(max_number); }
+        }
+    }
+}
